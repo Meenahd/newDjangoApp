@@ -1,7 +1,7 @@
 # configured aws provider with proper credentials
 # provider "aws" {
 #   region    = "us-east-1"
-#   profile   = "yusuf"
+#   profile   = "dennis"
 # }
 
 # create security group for the ec2 instance
@@ -39,6 +39,14 @@ resource "aws_security_group" "ec2_security_group4" {
     description      = "http access"
     from_port        = 8000
     to_port          = 8000
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+  }
+
+ingress {
+    description      = "http access"
+    from_port        = 8085
+    to_port          = 8085
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"]
   }
@@ -105,7 +113,7 @@ resource "aws_instance" "ec2_instance" {
 }
 
 resource "aws_s3_bucket" "resource_name"{
-  bucket = "basirat-mongo-db-backup"
+  bucket = "meenah-mongo-db-backup"
 
   tags = {
     Name = "mongodb1_backup"
